@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://polycat.dae" type="PackedScene" id=1]
+[ext_resource path="res://player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.45177
+height = 0.516424
+
+[sub_resource type="Environment" id=2]
+ambient_light_color = Color( 0.823529, 0.721569, 0.721569, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="player" type="KinematicBody" parent="."]
+visible = false
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="player"]
+transform = Transform( 0.999618, -0.0144571, -0.0235592, -0.0233719, 0.0129907, -0.999642, 0.0147579, 0.999811, 0.0126478, 0, 0.709629, 0 )
+shape = SubResource( 1 )
+
+[node name="camBase" type="Spatial" parent="player"]
+
+[node name="Camera" type="Camera" parent="player/camBase"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+environment = SubResource( 2 )
+current = true
+
+[node name="Graphics" parent="player" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[editable path="player/Graphics"]
